@@ -7,7 +7,6 @@ class EmergencyContact(models.Model):
 	first_name  = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 	contact = models.CharField(max_length=10)
-	contact = models.CharField(max_length=100)
 
 class Ingredient(models.Model):
 	id = models.AutoField(primary_key=True)
