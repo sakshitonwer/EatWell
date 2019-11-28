@@ -28,13 +28,14 @@ def save_user_details(request):
 		first_name = form.cleaned_data['first_name']
 		last_name = form.cleaned_data['last_name']
 		contact = form.cleaned_data['contact']
+		user_name = form.cleaned_data['user_name']
 		emergency_first_name  = form.cleaned_data['emergency_first_name']
 		emergency_last_name = form.cleaned_data['emergency_last_name']
 		emergency_contact = form.cleaned_data['emergency_contact']
 		emergency_contact_instance = EmergencyContact.objects.create(first_name=emergency_first_name, last_name=emergency_last_name, contact=emergency_contact)
-		user_instance = User.objects.create(first_name=first_name, last_name=last_name, contact=contact, emergency_contact=emergency_contact_instance)
+		user_instance = User.objects.create(first_name=first_name, last_name=last_name, contact=contact, emergency_contact=emergency_contact_instance, user_name=user_name)
 		# allergy_instance = Allergy.objects.create(title=title, body=body)
-		print(last_name, first_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
+		print(last_name, first_name, user_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
 
 
 	return HttpResponse("HELLO")

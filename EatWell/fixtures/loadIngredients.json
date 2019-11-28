@@ -1,0 +1,16 @@
+[
+  {
+    "model": "home.ingredient",
+    "pk": 1,
+    "fields": {
+      "ingredient_name": "Peanuts"
+    }
+  },
+  {
+    "model": "home.ingredient",
+    "pk": 2,
+    "fields": {
+      "ingredient_name": "Fish"
+    }
+  }
+]
