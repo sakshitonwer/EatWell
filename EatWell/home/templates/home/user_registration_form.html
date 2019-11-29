@@ -1,45 +1,9 @@
 {% extends 'home/layouts.html' %}
+
 {% block content %}
 <h1> ADD USER </h1>
   <form action = {% url 'saveuser' %} method="post">{% csrf_token %}
     {{ form.as_p }}
-      <!-- <div>
-        <label for="FirstName">First Name: </label>
-        <input id="first_name" type="text" name="first_name" value="">
-      </div>
-      <div>
-        <label for="LastName">Last Name: </label>
-        <input id="last_name" type="text" name="last_name" value="">
-      </div>
-      <div>
-        <label for="UserName">User Name: </label>
-        <input id="user_name" type="text" name="user_name" value="">
-      </div>
-      <div>
-        <label for="Contact">Contact: </label>
-        <input id="contact" type="text" name="contact" value="">
-      </div>
-      <div>
-        <label for="EmergencyFirstName">Emergency Last Name: </label>
-        <input id="emergency_first_name" type="text" name="emergency_first_name" value="">
-      </div>
-      <div>
-        <label for="EmergencyLastName">Emergency Last Name: </label>
-        <input id="emergency_last_name" type="text" name="emergency_last_name" value="">
-      </div>
-      <div>
-        <label for="EmergencyContact">Emergency Contact: </label>
-        <input id="emergency_contact" type="text" name="emergency_contact" value="">
-      </div>
-      <div>
-        <p>
-      <label>
-       </p>
-        <label for="Ingredients">Ingredients: </label> <br/>
-        {% for ingredient in ingredients %}
-          <input class="filled-in" style="position: inherit; opacity: 1; pointer-events: auto;" type="checkbox" /> <span>{{ingredient.ingredient_name}}</span>
-        {% endfor %}
-      </div> -->
       <input type="submit" value="OK">
   </form>
 {% endblock %}

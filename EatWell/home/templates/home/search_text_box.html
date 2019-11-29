@@ -1,0 +1,15 @@
+
+{% extends 'home/layouts.html' %}
+
+
+{% block content %}
+
+<form action = {% url 'get_food_items' %} method="post">{% csrf_token %}
+	<div>
+    	<label for="query"> <h1> <font color="darkblue"> What would you like to eat today? </h1></label>
+    	<input id="query" type="text" name="query" value="">
+    </div>
+    <input type="submit" value="Lets see if its safe!" class="btn btn-primary">
+</form>
+
+{% endblock %}

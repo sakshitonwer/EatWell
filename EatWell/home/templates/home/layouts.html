@@ -1,16 +1,33 @@
+
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
+
+<style>
+#bg{
+    background-size: 500 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+</style>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <title>EAT WELL</title>
 </head>
-<body>
-  <header class="container center-align">
-    <h1>EAT WELL</h1>
+<!-- <body> -->
+ <body id="bg" style="background-image: url('{% static "bg3.jpg"%}')"; > 
+  <header class="container left-align" class="jumbotron" class ="font-weight-bolder">
+    <br>
+    <br>
+    <b><h1>EAT WELL </h1><b>
   </header>
+
 
   <div class="container">
     {% block content %}
