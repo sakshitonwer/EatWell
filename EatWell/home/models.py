@@ -16,6 +16,7 @@ class User(models.Model):
 	id = models.AutoField(primary_key=True)
 	first_name  = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
+	username = models.CharField(max_length=100, unique=True, default = "not_applicable")
 	contact = models.CharField(max_length=10)
 	emergency_contact = models.OneToOneField(EmergencyContact, on_delete = models.CASCADE)
 

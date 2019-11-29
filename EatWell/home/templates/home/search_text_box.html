@@ -1,0 +1,7 @@
+<form action = {% url 'get_food_items' %} method="post">{% csrf_token %}
+	<div>
+    	<label for="query"> What would you like to eat today? </label>
+    	<input id="query" type="text" name="query" value="">
+    </div>
+    <input type="submit" value="Lets see if its safe!">
+</form>
