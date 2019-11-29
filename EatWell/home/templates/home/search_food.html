@@ -1,8 +1,16 @@
 
+
+{% extends 'home/layouts.html' %}
+
+
+{% block content %}
+
 <form action = {% url 'search_food' %} method="post">{% csrf_token %}
-	<div>
-    	<h1> you're logged in bro </h1>
+	<div class="form-group">
+    	<h1> <font color="forestgreen"> Sucessfully Logged in! </h1>
     </div>
-    <input type="submit" value="Continue">
+    <input type="submit" value="Go Ahead ..." class="btn btn-success">
 </form>
 
+
+{% endblock %}

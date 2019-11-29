@@ -1,7 +1,14 @@
-<form action = {% url 'set_log_in' %} method="post">{% csrf_token %}
-	<div>
-    	<label for="username">Username: </label>
-    	<input id="username" type="text" name="username" value="">
+{% extends 'home/layouts.html' %}
+
+
+{% block content %}
+
+<form  class="form" action = {% url 'set_log_in' %} method="post">{% csrf_token %}
+	<div class="form-group">
+    	<label for="username" color= "blue"><font color="maroon"> <h2>Username: </h2><font></label>
+    	<input  class="form-control" id="username" type="text" name="username" value="" class="form-control">
     </div>
-    <input type="submit" value="OK">
+    <input type="submit" value="OK" class="btn btn-success">
 </form>
+
+{% endblock %}
