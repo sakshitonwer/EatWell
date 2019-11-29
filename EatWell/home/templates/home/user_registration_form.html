@@ -2,7 +2,8 @@
 {% block content %}
 <h1> ADD USER </h1>
   <form action = {% url 'saveuser' %} method="post">{% csrf_token %}
-      <div>
+    {{ form.as_p }}
+      <!-- <div>
         <label for="FirstName">First Name: </label>
         <input id="first_name" type="text" name="first_name" value="">
       </div>
@@ -30,6 +31,15 @@
         <label for="EmergencyContact">Emergency Contact: </label>
         <input id="emergency_contact" type="text" name="emergency_contact" value="">
       </div>
+      <div>
+        <p>
+      <label>
+       </p>
+        <label for="Ingredients">Ingredients: </label> <br/>
+        {% for ingredient in ingredients %}
+          <input class="filled-in" style="position: inherit; opacity: 1; pointer-events: auto;" type="checkbox" /> <span>{{ingredient.ingredient_name}}</span>
+        {% endfor %}
+      </div> -->
       <input type="submit" value="OK">
   </form>
 {% endblock %}

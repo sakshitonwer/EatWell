@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 from .forms import UserRegistrationForm
-from .models import EmergencyContact, User
+from .models import EmergencyContact, User, Ingredient
 
 # Create your views here.
 def index(request):
@@ -19,7 +19,14 @@ def index(request):
 	return render(request, 'home/index.html')
 
 def get_user_registration_form(request):
-	return render(request, 'home/user_registration_form.html')
+	ingredients = Ingredient.objects.all()
+
+	form = UserRegistrationForm()
+	context = {
+        'form': form
+    }
+	
+	return render(request, 'home/user_registration_form.html', context)
 
 def save_user_details(request):
 	form = UserRegistrationForm(request.POST)
@@ -32,10 +39,11 @@ def save_user_details(request):
 		emergency_first_name  = form.cleaned_data['emergency_first_name']
 		emergency_last_name = form.cleaned_data['emergency_last_name']
 		emergency_contact = form.cleaned_data['emergency_contact']
-		emergency_contact_instance = EmergencyContact.objects.create(first_name=emergency_first_name, last_name=emergency_last_name, contact=emergency_contact)
-		user_instance = User.objects.create(first_name=first_name, last_name=last_name, contact=contact, emergency_contact=emergency_contact_instance, user_name=user_name)
+		allergies = form.cleaned_data['allergies']
+		# emergency_contact_instance = EmergencyContact.objects.create(first_name=emergency_first_name, last_name=emergency_last_name, contact=emergency_contact)
+		# user_instance = User.objects.create(first_name=first_name, last_name=last_name, contact=contact, emergency_contact=emergency_contact_instance, user_name=user_name)
 		# allergy_instance = Allergy.objects.create(title=title, body=body)
+		print(allergies)
 		print(last_name, first_name, user_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
-
 
 	return HttpResponse("HELLO")
