@@ -18,6 +18,7 @@ class User(models.Model):
 	last_name = models.CharField(max_length=100)
 	username = models.CharField(max_length=100, unique=True, default = "not_applicable")
 	contact = models.CharField(max_length=10)
+	user_name = models.CharField(max_length=100, default="")
 	emergency_contact = models.OneToOneField(EmergencyContact, on_delete = models.CASCADE)
 
 class UserAllergy(models.Model):

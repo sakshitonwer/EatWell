@@ -29,6 +29,7 @@ def save_user_details(request):
 		last_name = form.cleaned_data['last_name']
 		username = form.cleaned_data['username']
 		contact = form.cleaned_data['contact']
+		user_name = form.cleaned_data['user_name']
 		emergency_first_name  = form.cleaned_data['emergency_first_name']
 		emergency_last_name = form.cleaned_data['emergency_last_name']
 		emergency_contact = form.cleaned_data['emergency_contact']
@@ -40,7 +41,7 @@ def save_user_details(request):
 				username = username,
 				emergency_contact=emergency_contact_instance)
 		# allergy_instance = Allergy.objects.create(title=title, body=body)
-		print(last_name, first_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
+		print(last_name, first_name, user_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
 
 		request.session['name'] = username
 		assert false, locals()
