@@ -2,11 +2,11 @@ from django import forms
 from .models import EmergencyContact, User, Ingredient
 
 class UserRegistrationForm(forms.Form):
-	ingredients = Ingredient.objects.all()
-	print(ingredients)
+	# ingredients = Ingredient.objects.all()
+	# print(ingredients)
 	all_ingredients = []
-	for ingredient in ingredients:
-		all_ingredients.append(ingredient.ingredient_name)
+	# for ingredient in ingredients:
+		# all_ingredients.append(ingredient.ingredient_name)
 	first_name  = forms.CharField(label='first_name', max_length=100)
 	last_name = forms.CharField(label='last_name', max_length=100)
 	username = forms.CharField(label='last_name', max_length=100)
@@ -21,3 +21,7 @@ class UserRegistrationForm(forms.Form):
 
 class UserLogInForm(forms.Form):
 	username = forms.CharField(label='last_name', max_length=100)
+
+
+class ProductListForm(forms.Form):
+	product = forms.ChoiceField(label='product_name')

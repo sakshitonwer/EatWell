@@ -1,0 +1,26 @@
+{% extends 'home/layouts.html' %}
+
+
+{% block content %}
+
+<h1> Here's a list of matching results for {{search_query}}: </h1>
+
+
+    
+	
+	
+		{% for product in matching_products %}
+    	
+    		<h2><a href="{% url 'select_product' id=product.id %}" type=button> {{product.product_name}} </a>
+    		<br>
+    	</h2>
+
+    	{% endfor %}
+
+
+
+
+
+
+
+{% endblock %}

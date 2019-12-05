@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'EatWell.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eatwell',
+        'NAME': 'twishaeatwell',
         'USER' : 'root',
         'PASSWORD' : 'root',
         'HOST' : 'localhost',
