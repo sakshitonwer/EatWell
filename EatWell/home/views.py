@@ -36,24 +36,25 @@ def save_user_details(request):
 		last_name = form.cleaned_data['last_name']
 		username = form.cleaned_data['username']
 		contact = form.cleaned_data['contact']
-		user_name = form.cleaned_data['user_name']
 		emergency_first_name  = form.cleaned_data['emergency_first_name']
 		emergency_last_name = form.cleaned_data['emergency_last_name']
 		emergency_contact = form.cleaned_data['emergency_contact']
 		allergies = form.cleaned_data['allergies']
-		emergency_contact_instance = EmergencyContact.objects.create(first_name=emergency_first_name, last_name=emergency_last_name, contact=emergency_contact)
+		emergency_contact_instance = EmergencyContact.objects.create(
+			first_name=emergency_first_name,
+			last_name=emergency_last_name,
+			contact=emergency_contact)
 		user_instance = User.objects.create(
-				first_name=first_name, 
-				last_name=last_name, 
+				first_name=first_name,
+				last_name=last_name,
 				contact=contact,
 				username = username,
 				emergency_contact=emergency_contact_instance)
 		allergy_instance = Allergy.objects.create(title=title, body=body)
 		print(allergies)
-		print(last_name, first_name, user_name, contact, emergency_first_name, emergency_last_name, emergency_contact)
+		print(last_name, first_name, username, contact, emergency_first_name, emergency_last_name, emergency_contact)
 
 		request.session['name'] = username
-		assert false, locals()
 		return render(request, 'home/search_food.html')
 
 def get_user_login_form(request):
