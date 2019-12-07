@@ -2,8 +2,7 @@ from django import forms
 from .models import EmergencyContact, User, Ingredient
 
 class UserRegistrationForm(forms.Form):
-	ingredients = Ingredient.objects.all()
-	print(ingredients)
+	ingredients = Ingredient.objects.filter(is_main_ingredient=True).all()
 	all_ingredients = []
 	for ingredient in ingredients:
 		all_ingredients.append(ingredient.ingredient_name)
@@ -21,3 +20,7 @@ class UserRegistrationForm(forms.Form):
 
 class UserLogInForm(forms.Form):
 	username = forms.CharField(label='last_name', max_length=100)
+
+
+class ProductListForm(forms.Form):
+	product = forms.ChoiceField(label='product_name')

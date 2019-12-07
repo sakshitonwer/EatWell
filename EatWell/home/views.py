@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+import logging
 # Create your views here.
 from .forms import UserRegistrationForm
-from .models import EmergencyContact, User, Ingredient
+from .models import EmergencyContact, User, Ingredient, Product, ProductIngredients,UserAllergy
 
 # Create your views here.
 def index(request):
@@ -50,7 +51,12 @@ def save_user_details(request):
 				contact=contact,
 				username = username,
 				emergency_contact=emergency_contact_instance)
-		allergy_instance = Allergy.objects.create(title=title, body=body)
+		for allergy in allergies:
+			ingredient = Ingredient.objects.filter(ingredient_name=allergy).get()
+			UserAllergy.objects.create(
+				user=user_instance,
+				allergy=ingredient
+		)
 		print(allergies)
 		print(last_name, first_name, username, contact, emergency_first_name, emergency_last_name, emergency_contact)
 
@@ -79,6 +85,52 @@ def get_food_items(request):
 		return HttpResponse("No user found, Log in again")
 	user = User.objects.values('username')
 	search_query = request.POST.get('query');
-	return HttpResponse("Searching for " + str(search_query) + "...")
+
+	# Getting from database
+	matching_products = Product.objects.filter(product_name__contains=search_query)
+	logging.warning(matching_products)
+	return render(request, 'home/product_list.html', {
+		'matching_products' : matching_products,
+		'search_query' : search_query})
+
+
+def select_product(request, id):
+	select_product =  Product.objects.filter(id=id).get()
+	all_ingredients = ProductIngredients.objects.filter(product_id = select_product.id).values("ingredient_id")
+	username = request.session['name']
+	ingredients = []
+
+	for i in all_ingredients:
+		ingredients.append(i['ingredient_id'])
+	logging.warning(ingredients)
+	if not username:
+		return HttpResponse("No user found, Log in again")
+
+	user = User.objects.filter(username = username).get()
+	logging.warning(user)
+
+	
+	allergies = UserAllergy.objects.filter(user_id = user.id).values("allergy_id")
+
+	user_allergy = []
+	for a in allergies:
+		user_allergy.append(a["allergy_id"])
+
+	logging.warning(user_allergy)
+
+	c = get_intersection(user_allergy, ingredients)
+	
+	if c > 0:
+		# return HttpResponse("Dont eat")
+		return render(request, 'home/thumbs_down.html')
+	else:
+		return render(request, 'home/thumbs_up.html')
+
+	
+	return HttpResponse("HELLO " + str(select_product.product_name))
+
+
+def get_intersection(a, b):
+	return len(list(set(a) & set(b)))
 
 	
