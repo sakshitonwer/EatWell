@@ -38,7 +38,14 @@ class ProductIngredients(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
+class IngredientMapping(models.Model):
+	parent_ingredient =  models.ForeignKey(Ingredient, on_delete=models.CASCADE, related_name='%(class)s_parent')
+	child_ingredient =  models.ForeignKey(Ingredient, on_delete=models.CASCADE,  related_name='%(class)s_child')
 
 
+class ProductRecommendations(models.Model):
+	product_one =  models.ForeignKey(Product, on_delete=models.CASCADE, related_name='%(class)s_one')
+	product_two =  models.ForeignKey(Product, on_delete=models.CASCADE,  related_name='%(class)s_two')
 
 
+  
