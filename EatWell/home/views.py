@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import logging
 # Create your views here.
 from .forms import UserRegistrationForm
-from .models import EmergencyContact, User, Ingredient, Product, ProductIngredients,UserAllergy
+from .models import EmergencyContact, User, Ingredient, Product, ProductIngredients,UserAllergy, IngredientMapping
 
 # Create your views here.
 def index(request):
@@ -114,6 +114,10 @@ def select_product(request, id):
 
 	user_allergy = []
 	for a in allergies:
+		allergy_id = a["allergy_id"]
+		allergy_children = IngredientMapping.objects.filter(parent_ingredient = allergy_id).all()
+		for child in allergy_children:
+			user_allergy.append(child["child_ingredient"])
 		user_allergy.append(a["allergy_id"])
 
 	logging.warning(user_allergy)
